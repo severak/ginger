@@ -54,8 +54,8 @@ No code written yet :-)
 
 ## resources
 
+* [giteveryday](https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html)
 * [Pro Git](https://progit.org) /  [česky](https://git-scm.com/book/cs/v1)
 * [git ready](http://gitready.com)
-* [Everyday Git](https://www.kernel.org/pub/software/scm/git/docs/v1.7.9/everyday.html)
 * unversal command [git rev-parse](https://git-scm.com/docs/git-rev-parse)
 * [Git as a NoSql database](https://www.kenneth-truyers.net/2016/10/13/git-nosql-database/)
