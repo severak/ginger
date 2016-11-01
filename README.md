@@ -49,6 +49,9 @@ No code written yet :-)
 ~ginger look
   Displays current repository, branch and user.
   
+~ginger history [path]
+  Displays history of commits.
+  
 ~ means not yet implemented
 ```
 
