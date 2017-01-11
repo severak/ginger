@@ -64,3 +64,4 @@ No code written yet :-)
 * [git ready](http://gitready.com)
 * unversal command [git rev-parse](https://git-scm.com/docs/git-rev-parse)
 * [Git as a NoSql database](https://www.kenneth-truyers.net/2016/10/13/git-nosql-database/)
+* https://github.com/shobhitpuri/git-refresh
