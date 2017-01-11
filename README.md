@@ -58,6 +58,7 @@ No code written yet :-)
 ## resources
 
 * [tldr pages](https://tldr.ostera.io/git)
+* [easy git (wrapper)](https://people.gnome.org/~newren/eg/)
 * [giteveryday](https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html)
 * [Pro Git](https://progit.org) /  [česky](https://git-scm.com/book/cs/v1)
 * [git ready](http://gitready.com)
