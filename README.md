@@ -65,3 +65,4 @@ No code written yet :-)
 * unversal command [git rev-parse](https://git-scm.com/docs/git-rev-parse)
 * [Git as a NoSql database](https://www.kenneth-truyers.net/2016/10/13/git-nosql-database/)
 * https://github.com/shobhitpuri/git-refresh
+* https://stackoverflow.com/questions/1822849/what-are-these-ms-that-keep-showing-up-in-my-files-in-emacs
