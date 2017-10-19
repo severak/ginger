@@ -67,3 +67,4 @@ No code written yet :-)
 * https://github.com/shobhitpuri/git-refresh
 * https://stackoverflow.com/questions/1822849/what-are-these-ms-that-keep-showing-up-in-my-files-in-emacs
 * http://think-like-a-git.net/
+* http://tom.preston-werner.com/2009/05/19/the-git-parable.html
