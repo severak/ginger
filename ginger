@@ -1,0 +1,173 @@
+#!/bin/bash
+# GINGER - an easy to use git wrapper
+# (c) Severak 2018
+
+ProgName=$(basename $0)
+  
+sub_help(){
+    cat <<helptext
+GINGER - an easy to use git wrapper
+
+ginger commands
+  Display list of commands.
+
+~ginger version
+  Show version number etc.
+
+~ginger init
+  Invokes repository init wizard.
+
+~ginger clone <uri>
+  Clones remote repository from <uri>.
+
+ginger changed [path]
+  Displays what changed since last commit.
+  Used as diff when you provides [path].
+
+~ginger changes <from> <to> [path]
+
+~ginger commit
+  Let you commit a change.
+
+ginger sweep [path]
+  Undo local changes to last commit.
+
+~ginger pull
+  Pulls changes from remote repository protecting your local files optionally.
+
+~ginger push
+  Pushes changes back to the server.
+
+~ginger spinoff
+  Creates new branch from current branch.
+
+ginger branches
+  Display list of branches.
+  
+~ginger branch <add|remove> <name>
+  
+ginger switch <branch>
+  Switches to <branch>.
+
+ginger look
+  Displays current repository, branch and user.
+
+~ginger history [path]
+  Displays history of commits.
+
+~ means that command is not yet implemented
+helptext
+}
+
+check_repository(){
+	repo=$(git rev-parse --show-toplevel)
+	if [ ! $repo ]; then
+		exit 1
+	fi
+}
+  
+sub_commands(){
+	sub_help
+}
+
+sub_status(){
+	sub_look
+	echo ""
+	sub_changed
+}
+
+sub_changed(){
+	check_repository
+	if [ $1 ]; then
+		echo "Error: Not yet implemented." >&2
+		exit 1
+	fi
+
+	echo "-- STAGED:"
+	git diff --name-status --staged
+	echo "-- UNSTAGED:"
+	git diff --name-status
+}
+
+sub_sweep(){
+	check_repository
+	if [ $1 ]; then
+		git checkout HEAD -- $1
+		echo "OK."
+		exit 1
+	fi
+	
+	git reset --hard HEAD 
+}
+
+sub_branches(){
+	check_repository
+	git branch -a -v
+}
+
+sub_switch(){
+	check_repository
+	if [ ! $1 ]; then
+		echo "Error: Please, specify brach name." >&2
+		exit 1
+	fi
+	
+	git checkout $1
+}
+
+sub_look(){
+	check_repository
+	echo "repository: $repo"
+	echo "branch:     $(git symbolic-ref --short -q HEAD)"
+	echo "user:       $(git config user.name) <$(git config user.email)>"
+}
+
+sub_stage(){
+	check_repository
+	
+	if [ ! $1 ]; then
+		echo "Error: Please, provide file name to stage." >&2
+		exit 1
+	fi
+	
+	if [ $1 == "." ]; then
+		echo "staging all changed files..."
+		git add --update
+		exit 0
+	fi
+	
+	git add $1
+}
+
+sub_unstage(){
+	check_repository
+	if [ ! $1 ]; then
+		echo "Error: Please, provide file name to unstage." >&2
+		exit 1
+	fi
+	
+	if [ $1 == "." ]; then
+		echo "unstaging all changed files..."
+		git reset
+		exit 0
+	fi
+	
+	git reset -- $1
+}
+ 
+# main 
+subcommand=$1
+case $subcommand in
+    "" | "-h" | "--help")
+        sub_help
+        ;;
+    *)
+        shift
+        sub_${subcommand} $@
+        if [ $? = 127 ]; then
+            echo "Error: '$subcommand' is not a known subcommand." >&2
+            echo "       Run '$ProgName --help' for a list of known subcommands." >&2
+            exit 1
+        fi
+        ;;
+esac
