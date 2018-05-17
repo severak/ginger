@@ -1,7 +1,7 @@
 # ginger
 easy to use git wrapper
 
-No code written yet :-)
+Remembers all the git cryptic syntax so you don't have to.
 
 ## commands
 
