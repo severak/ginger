@@ -70,3 +70,4 @@ Remembers all the git cryptic syntax so you don't have to.
 * http://tom.preston-werner.com/2009/05/19/the-git-parable.html
 * https://githowto.com/
 * https://ohshitgit.com/
+* https://github.com/benharri/learngit
