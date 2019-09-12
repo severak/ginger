@@ -1,6 +1,7 @@
 @echo off
+setlocal
 :: GINGER - an easy to use git wrapper
-:: (c) Severak 2018-19
+:: (c) Severak 2016-19
 
 if "%1" EQU "?" goto help
 if "%1" EQU "-h" goto help
@@ -9,6 +10,12 @@ if "%1" EQU "help" goto help
 
 :: ensure we are in repo
 git rev-parse --show-toplevel >nul || exit /b
+
+if "%1" EQU "login" goto login
+
+:: ensure we have user
+git config user.name >nul || (echo ginger: User not configured. Use: ginger login && exit /b)
+
 :: set codepage
 set LC_ALL=C.UTF-8
 
@@ -21,6 +28,20 @@ if "%1" EQU "switch" goto switch
 if "%1" EQU "spinoff" goto spinoff
 if "%1" EQU "stage" goto stage
 if "%1" EQU "unstage" goto unstage
+if "%1" EQU "log" goto log
+echo Error: Unknown command %1
+goto :eof
+
+:login
+set "_global="
+git config user.name >nul || (choice /m "Wanna set global config?" & if %ERRORLEVEL% NEQ 1 set _global=--global)
+
+set /P _username=User name: 
+set /P _email=E-mail: 
+
+git config %_global% user.name "%_username%"
+git config %_global% user.email "%_email%"
+goto :eof
 
 :look
 echo repo:
@@ -37,6 +58,11 @@ echo:
 :: fallthrough to changed
 
 :changed
+if "%2" NEQ "" (
+	git diff -- %2
+	goto :eof
+)
+
 echo -- STAGED:
 git diff --name-status --staged
 echo -- UNSTAGED:
@@ -74,14 +100,42 @@ git checkout -b %2
 goto :eof
 
 :stage
-:unstage
-echo TBD
+if "%2" EQU "" (
+	echo Error: Please, provide file name to stage.
+	exit /b
+)
+
+if "%2" EQU "." (
+	echo staging all changed files...
+	git add --update
+	goto :eof
+)
+
+git add %2
 goto :eof
 
+:unstage
+if "%2" EQU "" (
+	echo Error: Please, provide file name to stage.
+	exit /b
+)
+
+if "%2" EQU "." (
+	echo staging all changed files...
+	git reset
+	goto :eof
+)
+
+git reset -- %2
+goto :eof
+
+:log
+git log
+goto :eof
 
 :help
 echo GINGER - an easy to use git wrapper
-echo (c) Severak 2018-19
+echo (c) Severak 2016-19
 echo: 
 echo No help available yet.
 goto :eof
