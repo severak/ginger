@@ -3,6 +3,8 @@ easy to use git wrapper
 
 Remembers all the git cryptic syntax so you don't have to.
 
+(Currently only windows port is in development.)
+
 ## commands
 
 ```
@@ -18,8 +20,8 @@ Remembers all the git cryptic syntax so you don't have to.
 ~ginger init
   Invokes repository init wizard.
   
-~ginger clone <uri>
-  Clones remote repository from <uri>.
+~ginger login
+  Set up credientals of this project.
 
 ~ginger changed [path]
   Displays what changed since last commit.
@@ -39,6 +41,9 @@ Remembers all the git cryptic syntax so you don't have to.
   
 ~ginger spinoff
   Creates new branch.
+  
+~ginger orphan
+  Creates new branch with no parent.  
 
 ~ginger branches
   Display list of branches.
@@ -49,7 +54,7 @@ Remembers all the git cryptic syntax so you don't have to.
 ~ginger look
   Displays current repository, branch and user.
   
-~ginger history [path]
+~ginger timeline <before/after/parents/childs> <ref>
   Displays history of commits.
   
 ~ means not yet implemented
