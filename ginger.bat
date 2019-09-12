@@ -29,6 +29,7 @@ if "%1" EQU "spinoff" goto spinoff
 if "%1" EQU "stage" goto stage
 if "%1" EQU "unstage" goto unstage
 if "%1" EQU "log" goto log
+if "%1" EQU "" goto help
 echo Error: Unknown command %1
 goto :eof
 
@@ -137,5 +138,5 @@ goto :eof
 echo GINGER - an easy to use git wrapper
 echo (c) Severak 2016-19
 echo: 
-echo No help available yet.
+echo No help available yet. See source code.
 goto :eof
