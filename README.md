@@ -76,3 +76,4 @@ Remembers all the git cryptic syntax so you don't have to.
 * https://githowto.com/
 * https://ohshitgit.com/
 * https://github.com/benharri/learngit
+* https://github.com/jayphelps/git-blame-someone-else
