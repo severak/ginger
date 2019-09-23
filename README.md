@@ -5,6 +5,10 @@ Remembers all the git cryptic syntax so you don't have to.
 
 (Currently only windows port is in development.)
 
+## installation
+
+Drop `ginger.bat` or `ginger` to your `$PATH`.
+
 ## commands
 
 ```
@@ -20,17 +24,17 @@ Remembers all the git cryptic syntax so you don't have to.
 ~ginger init
   Invokes repository init wizard.
   
-~ginger login
+ginger login
   Set up credientals of this project.
 
-~ginger changed [path]
+ginger changed [path]
   Displays what changed since last commit.
   Used as diff when you provides [path].  
 
 ~ginger commit
   Let you commit a change.
   
-~ginger sweep
+ginger sweep
   Undo local changes to last commit.
 
 ~ginger pull
@@ -39,19 +43,19 @@ Remembers all the git cryptic syntax so you don't have to.
 ~ginger push
   Pushes changes back to the server.
   
-~ginger spinoff
+ginger spinoff
   Creates new branch.
   
 ~ginger orphan
   Creates new branch with no parent.  
 
-~ginger branches
+ginger branches
   Display list of branches.
 
-~ginger switch <branch>
+ginger switch <branch>
   Switches to <branch>.
   
-~ginger look
+ginger look
   Displays current repository, branch and user.
   
 ~ginger timeline <before/after/parents/childs> <ref>
